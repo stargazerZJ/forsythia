@@ -71,7 +71,7 @@ class Config(BaseModel):
 	course: dict[str, 'Course'] = {}  # auto-download settings for each course
 
 	@validator('data_dir', 'tmp_dir', 'video_dir', pre=True, allow_reuse=True)
-	def path_str_to_expanded_path(cls, v):
+	def path_str_to_expanded_path(cls, v : Path):
 		if isinstance(v, str):
 			return Path(v).expanduser()
 		v = v.expanduser()
@@ -125,4 +125,4 @@ class ColorFormatter(logging.Formatter):
 handler = logging.StreamHandler(sys.stdout)
 formatter = ColorFormatter('%(asctime)s,%(msecs)03d %(levelname)-8s [%(filename)s:%(lineno)d] %(message)s')
 handler.setFormatter(formatter)
-logging.basicConfig(level=logging.INFO, handlers=[handler])
+logging.basicConfig(level=logging.INFO, handlers=[handler], datefmt='%Y-%m-%d %H:%M:%S')
