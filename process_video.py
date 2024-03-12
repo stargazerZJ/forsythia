@@ -80,7 +80,7 @@ def transcribe_video(input_file : Path, output_file, tmp_path : Path, initial_pr
 		make_subtitle_readable(transcript, readable_subtitle_path)
 	transcript.unlink()
 
-def process_video(input_files, output_file : Path, tmp_path : Path =None, transcribe=False, readable_subtitle=False, config : Config =None):
+def process_video(input_files, output_file : Path, tmp_path : Path =None, transcribe=False, readable_subtitle=False, config : Config =None, whisper_initial_prompt = "数学分析，极限，证明，闭集，开集。"):
 	if config:
 		global aria2c_args, whisper_args
 		aria2c_args = config.aria2c_args
@@ -123,7 +123,8 @@ def process_video(input_files, output_file : Path, tmp_path : Path =None, transc
 		out_file = tmp_path / f"transcribed_{uuid.uuid4()}.mp4"
 		downloaded_files.append(out_file)
 		readable_subtitle_path = output_file.with_suffix('.txt') if readable_subtitle else ''
-		transcribe_video(in_file, out_file, tmp_path, readable_subtitle_path=readable_subtitle_path)
+		transcribe_video(in_file, out_file, tmp_path, readable_subtitle_path=readable_subtitle_path,
+				   initial_prompt=whisper_initial_prompt)
 
 	# Move the final file to the output directory
 	# run_command(['mv', f'"{out_file}"', f'"{output_file}"'])

@@ -36,7 +36,8 @@ def search_download(config : Config, course : Course, login : SJTU_Login, date :
 		output_video,
 		transcribe=course.transcribe,
 		readable_subtitle=course.readable_subtitles,
-		config=config)
+		config=config,
+		whisper_initial_prompt=course.whisper_initial_prompt)
 	if history:
 		[history.add(i.video_id) for i in videos]
 	return True, len(videos)
