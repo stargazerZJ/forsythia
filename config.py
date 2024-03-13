@@ -127,3 +127,8 @@ formatter = ColorFormatter('%(asctime)s %(levelname)-8s [%(filename)s:%(lineno)d
 						   datefmt='%m/%d %H:%M:%S')
 handler.setFormatter(formatter)
 logging.basicConfig(level=logging.INFO, handlers=[handler])
+
+'''
+Known issues:
+`path_str_to_expanded_path` validator won't create the directory if it does not exist.
+'''
