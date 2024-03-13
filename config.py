@@ -123,6 +123,6 @@ class ColorFormatter(logging.Formatter):
 
 # Configure root logger
 handler = logging.StreamHandler(sys.stdout)
-formatter = ColorFormatter('%(asctime)s,%(msecs)03d %(levelname)-8s [%(filename)s:%(lineno)d] %(message)s')
+formatter = ColorFormatter('%(asctime)s %(levelname)-8s [%(filename)s:%(lineno)d] %(message)s')
 handler.setFormatter(formatter)
 logging.basicConfig(level=logging.INFO, handlers=[handler], datefmt='%Y-%m-%d %H:%M:%S')
