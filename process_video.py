@@ -34,7 +34,7 @@ sjtu_header = 'referer: https://courses.sjtu.edu.cn/'
 
 def download_video(links, file_names, output_dir, tmp_path):
 	if not links: return
-	# logging.info(f"Downloading {len(links)} videos...")
+	logging.info(f"Downloading {len(links)} videos...")
 	# write links and arguments to aria2c input file
 	aria2c_input = tmp_path / 'aria2c_input.txt'
 	with aria2c_input.open('w') as f:
