@@ -179,4 +179,3 @@ if __name__ == '__main__':
 
 # Known issues:
 # 1. The input file name cannot contain spaces.
-# 2. aria2c outputs too much information to the console.
