@@ -70,7 +70,7 @@ def setup_parser(parser: argparse.ArgumentParser):
 def main(args: argparse.Namespace):
 	config = load_config(args.config)
 	username = args.username or config.username
-	password = config.password or getpass(prompt='Password for SJTU: ')
+	password = config.password
 	config.video_dir = Path(args.output_dir)
 
 	# Default year handling for the date

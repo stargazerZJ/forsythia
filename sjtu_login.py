@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 import io
 import urllib.parse
 import time
+import getpass
 
 oauth_urls = (
     "https://courses.sjtu.edu.cn/app/oauth/2.0/login?login_type=outer",
@@ -12,7 +13,7 @@ oauth_urls = (
 class SJTU_Login:
     def __init__(self, username, password):
         self.username = username
-        self.password = password
+        self.password = password or getpass(prompt='Password for SJTU: ')
         self.cookies = None
 
     def login(self):

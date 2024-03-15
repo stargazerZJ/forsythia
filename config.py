@@ -1,7 +1,7 @@
 '''
 # Example configuration file
-username = "username"
-password = "password"
+username = "username"	# SJTU username
+password = "password"	# SJTU password. If not provided, the program will prompt for it.
 
 data_dir = "~/.local/share/forsythia"
 tmp_dir = "~/.cache/forsythia"
@@ -54,7 +54,7 @@ class Course(BaseModel):
 
 class Config(BaseModel):
 	username: str = ""  # SJTU username
-	password: str = ""  # SJTU password
+	password: str = ""  # SJTU password. If not provided, the program will prompt for it.
 	data_dir: Path = Path("~/.local/share/forsythia")  # data directory
 	tmp_dir: Path = Path("~/.cache/forsythia")  # temporary directory
 	video_dir: Path = Path("~/Videos/forsythia")  # directory to save the downloaded video

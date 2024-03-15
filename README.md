@@ -33,8 +33,8 @@ Default configuration file is `~/.config/forsythia/config.toml`. You can also sp
 
 Basic example:
 ```toml
-username = "username"
-password = "password"
+username = "username" # your SJTU username
+password = "password" # your SJTU password. If not provided, you will be prompted to enter it.
 
 video_dir = "~/Videos/forsythia"
 
