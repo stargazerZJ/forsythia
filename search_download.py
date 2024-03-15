@@ -99,20 +99,7 @@ def main(args: argparse.Namespace):
 		print(f"Not enough videos found for {args.course_id} on {args.date.strftime('%m-%d')}.")
 		print(f"Expected: {args.min_count}, Found: {success[1]}")
 
-# def test():
-# 	# read password from password.txt
-# 	with open('test/password.txt', 'r') as f:
-# 		password = f.read().strip()
-# 	login = SJTU_Login('zeng_ji', password)
-# 	success = search_download('64368', login, '.', datetime(2024, 2, 27), 0, 'History')
-# 	if success:
-# 		print("Download and processing complete.")
-# 	else:
-# 		print(f"Not enough videos found for 64368 on 2024-02-27.")
-
 if __name__ == "__main__":
-	# test()
-	# exit()
 	parser = argparse.ArgumentParser(description=CLI_description)
 	setup_parser(parser)
 	args = parser.parse_args()
