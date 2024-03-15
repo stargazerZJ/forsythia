@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img src="https://notes.sjtu.edu.cn/uploads/upload_1d7d9afd410d9ac83ad875d8103e9e14.png" alt="Forsythia" width="200">
+  <img src="https://github.com/stargazerZJ/forsythia/blob/main/doc/logo.png" alt="Forsythia" width="200">
   <br>Forsythia<br>
 </h1>
 
