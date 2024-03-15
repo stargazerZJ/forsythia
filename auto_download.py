@@ -8,9 +8,9 @@ import argparse
 import time
 import subprocess
 import logging
-from datetime import datetime
-
 from datetime import datetime, timedelta
+
+CLI_description = '''Auto-download videos based on configuration.'''
 
 def should_download(course: Course, date: datetime) -> bool:
 	"""Check if videos for a given date should be downloaded based on the course's schedule."""
@@ -72,13 +72,18 @@ def auto_download(config: Config):
 			logging.info("Interrupted. Exiting.")
 			break
 
-if __name__ == "__main__":
-	parser = argparse.ArgumentParser(description="Auto-download videos based on configuration.")
+def setup_parser(parser: argparse.ArgumentParser):
 	parser.add_argument("-c", "--config", help="Path to the configuration file.", default=default_config_path)
-	args = parser.parse_args()
 
+def main(args: argparse.Namespace):
 	config = load_config(args.config)
 	auto_download(config)
+
+if __name__ == "__main__":
+	parser = argparse.ArgumentParser(description=CLI_description)
+	setup_parser(parser)
+	args = parser.parse_args()
+	main(args)
 
 # def auto_download(config : Config):
 # 	login = SJTU_Login(config.username, config.password)
