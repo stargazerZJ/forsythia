@@ -7,8 +7,6 @@
 
 ## Features
 
-**Linux support only (Currently).**
-
 - Auto-download course videos from SJTU Canvas as soon as they are available.
 - Merge video clips of successive lectures into one file.
 - Transcribe accurately based on OpenAI's [whisper](https://openai.com/research/whisper) (GPU recommended).
@@ -16,7 +14,10 @@
 
 PRs are welcome!
 
-**Important**: This project is for educational purposes only. Please respect the intellectual property rights of the content creators.
+**Important**: Linux support only (Currently).
+
+## Disclaimer
+This project is not affiliated with SJTU or Canvas. It is for educational purposes only. Please respect the intellectual property rights of the content creators. The author is not responsible for any misuse of this project.
 
 ## Installation
 
