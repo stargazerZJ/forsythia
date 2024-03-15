@@ -57,7 +57,7 @@ For more options, see `config.py` in the repository. You may refer to the [TOML 
 
 Auto-download videos:
 ```bash
-./forysthia.py auto_download -c /path/to/config.toml
+./forsythia.py auto_download -c /path/to/config.toml
 ```
 
 Note: For daemon mode, consider `nohup`, `tmux` or `systemd`.
