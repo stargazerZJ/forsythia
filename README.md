@@ -3,7 +3,7 @@
   <br>Forsythia<br>
 </h1>
 
-<h4 align="center">SJTU Canvas Video auto-downloader.</h4>
+<h4 align="center">SJTU Canvas video auto-downloader.</h4>
 
 ## Features
 
