@@ -14,6 +14,8 @@
 - Transcribe accurately based on OpenAI's [whisper](https://openai.com/research/whisper) (GPU recommended).
 - Summarize. (TODO)
 
+PRs are welcome!
+
 **Important**: This project is for educational purposes only. Please respect the intellectual property rights of the content creators.
 
 ## Installation
