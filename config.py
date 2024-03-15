@@ -23,7 +23,7 @@ auto_download = True
 transcribe = True
 readable_subtitles = False
 whisper_initial_prompt = "数学分析，极限，证明，闭集，开集。"
-file_name = "{videoTitle}-{month}-{day}.mp4"
+# file_name = "{videoTitle}-{month}-{day}.mp4"	# Not implemented yet
 
 [course.PH]
 course_id = 64222
@@ -47,10 +47,10 @@ class Course(BaseModel):
 	course_table: dict[int, int] = {}	# week : number of videos to download, if not enough videos are found, the download will be skipped
 	# `course_table = { 1 : 2, 3 : 2, 5 : 2 }` means that for Monday, Wednesday and Friday, download 2 videos
 	auto_download: bool = True	# whether to auto-download the videos
-	transcribe: bool = False
-	readable_subtitles: bool = False
+	transcribe: bool = False	# whether to transcribe the videos
+	readable_subtitles: bool = False	# whether to generate readable subtitles (a txt file)
 	whisper_initial_prompt: str = "数学分析，极限，证明，闭集，开集。"
-	file_name: str = "{videoTitle}-{month}-{day}.mp4"
+	# file_name: str = "{videoTitle}-{month}-{day}.mp4"	# Not implemented yet
 
 class Config(BaseModel):
 	username: str = ""  # SJTU username
@@ -83,6 +83,7 @@ class Config(BaseModel):
 def load_config(path: str = default_config_path) -> Config:
 	'''Load the configuration from the given path. If the file does not exist, default values are used.'''
 	try:
+		path = Path(path).expanduser()
 		with open(path, 'r') as f:
 			config = tomllib.load(f)
 	except FileNotFoundError:
