@@ -71,9 +71,9 @@ class Config(BaseModel):
 	course: dict[str, 'Course'] = {}  # auto-download settings for each course
 
 	@validator('data_dir', 'tmp_dir', 'video_dir', pre=True, allow_reuse=True)
-	def path_str_to_expanded_path(cls, v : Path):
+	def path_str_to_expanded_path(cls, v):
 		if isinstance(v, str):
-			return Path(v).expanduser()
+			v = Path(v)
 		v = v.expanduser()
 		if not v.exists():
 			v.mkdir(parents=True)
@@ -90,7 +90,6 @@ def load_config(path: str = default_config_path) -> Config:
 		logging.warning(f"Config file {path} does not exist, using default values.")
 		config = {}
 	return Config(**config)
-
 
 
 '''
