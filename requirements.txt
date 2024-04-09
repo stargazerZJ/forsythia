@@ -1,5 +1,5 @@
 pydantic
 toml; python_version < '3.11'	# tomllib is included in the standard library in Python 3.11
-shutil
+shutils
 requests
 beautifulsoup4

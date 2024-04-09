@@ -43,12 +43,12 @@ video_dir = "~/Videos/forsythia"
 [course.MA]	# the first course to auto-download
 course_id = 64032
 # week : number of videos to download
-course_table = { 1 : 2, 3 : 2, 5 : 2 }
+course_table = { 1 = 2, 3 = 2, 5 = 2 }
 # the above line means that for Monday, Wednesday and Friday, download 2 videos each.
 
 [course.PH]	# the second course to auto-download
 course_id = 64222
-course_table = { 1 : 2, 3 : 2, 5 : 2 }
+course_table = { 1 = 2, 3 = 2, 5 = 2 }
 ```
 
 For more options, see `config.py` in the repository. You may refer to the [TOML documentation](https://toml.io/en/) and the [pydantic documentation](https://pydantic-docs.helpmanual.io/) for more information.

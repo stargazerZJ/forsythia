@@ -17,7 +17,7 @@ whisper_args = []
 [course.MA]
 course_id = 64032
 # week : number of videos to download
-course_table = { 1 : 2, 3 : 2, 5 : 2 }
+course_table = { 1 = 2, 3 = 2, 5 = 2 }
 # the above line means that for Monday, Wednesday and Friday, download 2 videos
 auto_download = True
 transcribe = True
@@ -27,7 +27,7 @@ whisper_initial_prompt = "数学分析，极限，证明，闭集，开集。"
 
 [course.PH]
 course_id = 64222
-course_table = { 1 : 2, 3 : 2, 5 : 2 }
+course_table = { 1 = 2, 3 = 2, 5 = 2 }
 auto_download = True
 '''
 import sys
@@ -60,7 +60,11 @@ class Config(BaseModel):
 	video_dir: Path = Path("~/Videos/forsythia")  # directory to save the downloaded video
 	skip_before: int = 2  # in days, videos older than this will be ignored by the auto-download
 	check_interval: int = 15  # in minutes, how often to check for new videos
-	aria2c_args: list[str] = ["-x", "16", "-s", "16", "-j", "16", "-k", "1M"]  # arguments to pass to aria2c
+	aria2c_args: list[str] = ["-x", "16", "-s", "16", "-j", "16", "-k", "1M",
+		"--summary-interval=0",
+		"--download-result=hide",
+		"--console-log-level=warn"
+	]  # arguments to pass to aria2c
 	whisper_args: list[str] = [
 		"--model", "large-v2",
 		'--language', 'Chinese',
@@ -70,7 +74,7 @@ class Config(BaseModel):
 	post_download_script: str = ""  # script to run after downloading the videos
 	course: dict[str, 'Course'] = {}  # auto-download settings for each course
 
-	@validator('data_dir', 'tmp_dir', 'video_dir', pre=True, allow_reuse=True)
+	@validator('data_dir', 'tmp_dir', 'video_dir', pre=True, allow_reuse=True, always=True)
 	def path_str_to_expanded_path(cls, v):
 		if isinstance(v, str):
 			v = Path(v)
@@ -91,6 +95,9 @@ def load_config(path: str = default_config_path) -> Config:
 		config = {}
 	return Config(**config)
 
+if __name__ == "__main__":
+	config = load_config()
+	print(config)
 
 '''
 Known issues:
