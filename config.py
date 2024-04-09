@@ -98,8 +98,3 @@ def load_config(path: str = default_config_path) -> Config:
 if __name__ == "__main__":
 	config = load_config()
 	print(config)
-
-'''
-Known issues:
-`path_str_to_expanded_path` validator won't create the directory if it does not exist.
-'''
