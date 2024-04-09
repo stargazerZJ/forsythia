@@ -35,7 +35,7 @@ if sys.version_info < (3, 11):
 	import toml as tomllib
 else:
 	import tomllib
-from pydantic import BaseModel, validator
+from pydantic import BaseModel, field_validator, Field
 from pathlib import Path
 import logging
 import log
@@ -55,9 +55,15 @@ class Course(BaseModel):
 class Config(BaseModel):
 	username: str = ""  # SJTU username
 	password: str = ""  # SJTU password. If not provided, the program will prompt for it.
-	data_dir: Path = Path("~/.local/share/forsythia")  # data directory
-	tmp_dir: Path = Path("~/.cache/forsythia")  # temporary directory
-	video_dir: Path = Path("~/Videos/forsythia")  # directory to save the downloaded video
+	# data_dir: Path = Path("~/.local/share/forsythia")  # data directory
+	# tmp_dir: Path = Path("~/.cache/forsythia")  # temporary directory
+	# video_dir: Path = Path("~/Videos/forsythia")  # directory to save the downloaded video
+	data_dir: Path = Field(default=Path("~/.local/share/forsythia"),
+						repr=str, validate_default=True)  # data directory
+	tmp_dir: Path = Field(default=Path("~/.cache/forsythia"),
+					   repr=str, validate_default=True)  # temporary directory
+	video_dir: Path = Field(default=Path("~/Videos/forsythia"),
+						 repr=str, validate_default=True)  # directory to save the downloaded video
 	skip_before: int = 2  # in days, videos older than this will be ignored by the auto-download
 	check_interval: int = 15  # in minutes, how often to check for new videos
 	aria2c_args: list[str] = ["-x", "16", "-s", "16", "-j", "16", "-k", "1M",
@@ -74,7 +80,7 @@ class Config(BaseModel):
 	post_download_script: str = ""  # script to run after downloading the videos
 	course: dict[str, 'Course'] = {}  # auto-download settings for each course
 
-	@validator('data_dir', 'tmp_dir', 'video_dir', pre=True, allow_reuse=True, always=True)
+	@field_validator('data_dir', 'tmp_dir', 'video_dir')
 	def path_str_to_expanded_path(cls, v):
 		if isinstance(v, str):
 			v = Path(v)
