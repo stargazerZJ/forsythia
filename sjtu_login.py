@@ -1,5 +1,5 @@
 import requests
-from bs4 import BeautifulSoup
+import re
 import io
 import urllib.parse
 import time
@@ -37,15 +37,7 @@ def get_params_uuid_cookies(url):
         headers={"accept-language": "zh-CN"}
     )
     params = parse_params(r.url)
-    uuid = BeautifulSoup(
-        r.content, "html.parser"
-    ).find(
-        "input",
-        attrs={
-            "type": "hidden",
-            "name": "uuid"
-        }
-    )["value"]
+    uuid = re.search(r'uuid: "([0-9a-f-]+)"', r.text).group(1)
     cookies = r.cookies
     for i in r.history:
         cookies.update(i.cookies)
@@ -115,3 +107,13 @@ def test_login(cookies):
         cookies=cookies
     )
     return r.status_code == 200
+
+if __name__ == "__main__":
+    username = input("Username for SJTU: ")
+    password = getpass(prompt='Password for SJTU: ')
+    sjtu_login = SJTU_Login(username, password)
+    cookies = sjtu_login.login()
+    if test_login(cookies):
+        print("Login successful.")
+    else:
+        print("Login failed.")
