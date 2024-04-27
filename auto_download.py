@@ -29,8 +29,8 @@ def auto_download(config: Config):
 
 	while True:
 		download = False	# whether any videos were downloaded
+		execution_begin_time = datetime.now()
 		for course_name, course in config.course.items():
-			execution_begin_time = datetime.now()
 			today = datetime.now()
 			if course.auto_download:
 				for day_offset in range(config.skip_before):
