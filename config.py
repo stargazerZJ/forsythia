@@ -84,7 +84,7 @@ class Config(BaseModel):
 	def path_str_to_expanded_path(cls, v):
 		if isinstance(v, str):
 			v = Path(v)
-		v = v.expanduser()
+		v = v.expanduser().resolve()
 		if not v.exists():
 			v.mkdir(parents=True)
 			logging.warning(f"Directory {v} does not exist, creating it.")
@@ -93,7 +93,7 @@ class Config(BaseModel):
 def load_config(path: str = default_config_path) -> Config:
 	'''Load the configuration from the given path. If the file does not exist, default values are used.'''
 	try:
-		path = Path(path).expanduser()
+		path = Path(path).expanduser().resolve()
 		with open(path, 'r') as f:
 			config = tomllib.load(f)
 	except FileNotFoundError:
