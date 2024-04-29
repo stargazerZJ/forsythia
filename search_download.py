@@ -7,6 +7,7 @@ from sjtu_real_canvas_video import get_real_canvas_videos
 from process_video import process_video
 from datetime import datetime
 import argparse
+import os
 
 CLI_description = '''Search and download videos from SJTU Canvas. Skip if less than `min_count` videos are uploaded.'''
 
@@ -57,7 +58,7 @@ def setup_parser(parser: argparse.ArgumentParser):
 	parser.add_argument('course_id', help='The course ID for which to download videos.')
 	parser.add_argument('-c', '--config', default=default_config_path, help='Path to the config file. Defaults to ~/.config/forsythia/config.toml. If the file does not exist, default values are used.')
 	parser.add_argument('-u', '--username', default="", help='Your SJTU username. If not provided, the username from the config file is used.')
-	parser.add_argument('-o', '--output_dir', default='.', help='Directory to save the downloaded video. (default: .)')
+	parser.add_argument('-o', '--output_dir', default=os.getcwd(), help='Directory to save the downloaded video. (default: .)')
 	parser.add_argument('-d', '--date', default=datetime.now().strftime('%m-%d'), type=parse_date,
 						help='The date for the videos in MM-DD, YY-MM-DD, or YYYY-MM-DD format. Defaults to today.')
 	parser.add_argument('-m', '--min_count', type=int, default=0,

@@ -42,6 +42,7 @@ def download_video(links, file_names, output_dir, tmp_path):
 			f.write(f'{link}\n out={file_name}\n header={sjtu_header}\n')
 	# download videos using aria2c
 	run_command(['aria2c', '-i', str(aria2c_input), '-d', str(output_dir), *aria2c_args])
+	print()	# print a newline to console because aria2c doesn't print a newline after it's done
 	aria2c_input.unlink()
 
 def merge_video(files, output_file, tmp_path):
@@ -138,15 +139,6 @@ def process_video(input_files, output_file : Path, tmp_path : Path =None, transc
 		if file.parent == tmp_path and file.exists():
 			file.unlink()
 
-	# process_video(
-	# 	[
-	# 		# "MA-2-21-1.mp4",
-	# 		# "MA-2-21-1.mp4",
-	# 		"https://live.sjtu.edu.cn/vod/31011200112000000000/31011200111320001185/0_1709292554-1709295855.mp4?key=1709425858-1-acfa256a2b49f02233046afd595d2fd4",
-	# 		"https://live.sjtu.edu.cn/vod/31011200112000000000/31011200111320001185/0_1709299188-1709302489.mp4?key=1709425895-1-ae43f31b094f3fabdfe069d115e7658c",
-	# 		"https://live.sjtu.edu.cn/vod/31011200112000000000/31011200111320001185/0_1709303333-1709306634.mp4?key=1709425910-1-ba652391a193bce264a309b1624d9a82"
-	# 	],
-	# 	"LO-3-1.mp4", './tmp', transcribe=True, readable_subtitle=True)
 
 def setup_parser(parser : argparse.ArgumentParser):
 	parser.add_argument('input_files', nargs='+', help='List of input video files or URLs to process.')
